@@ -41,7 +41,6 @@ const CardTodoList = () => {
     <div className="container-card">
       <TodoForm newTodoList={newTodoList} />
       <Reorder.Group axis="y" values={todoList} onReorder={setTodoList}>
-        {/* <AnimatePresence> */}
         {todoList.map((todo) => (
           <Reorder.Item key={todo.id} value={todo}>
             <Todo
@@ -52,7 +51,6 @@ const CardTodoList = () => {
             />
           </Reorder.Item>
         ))}
-        {/* </AnimatePresence> */}
       </Reorder.Group>
     </div>
   );

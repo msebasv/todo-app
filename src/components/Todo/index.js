@@ -50,7 +50,6 @@ const Todo = (props) => {
     >
       {!editTodo ? (
         <div className="card-todo">
-          <h4>{props.id}</h4>
           <h4>{props.task}</h4>
           <div className="container-buttons">
             <button className="edit-button" onClick={handleEdit}>
