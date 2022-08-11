@@ -2,7 +2,21 @@ import React, { useState } from "react";
 
 import { AiFillEdit, AiTwotoneDelete, AiFillSave } from "react-icons/ai";
 
+import { motion } from "framer-motion";
+
 import "./index.scss";
+
+const variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
 
 const Todo = (props) => {
   const [editTodo, setEditTodo] = useState(false);
@@ -27,10 +41,17 @@ const Todo = (props) => {
     props.deleteTodoList(props.id);
   };
   return (
-    <div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={variants}
+      layoutId={props.id}
+    >
       {!editTodo ? (
         <div className="card-todo">
-          <h4>{props.todo}</h4>
+          <h4>{props.id}</h4>
+          <h4>{props.task}</h4>
           <div className="container-buttons">
             <button className="edit-button" onClick={handleEdit}>
               <AiFillEdit />
@@ -48,7 +69,7 @@ const Todo = (props) => {
           </button>
         </form>
       )}
-    </div>
+    </motion.div>
   );
 };
 

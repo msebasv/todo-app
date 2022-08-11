@@ -3,19 +3,28 @@ import React, { useState } from "react";
 import TodoForm from "../TodoForm";
 import Todo from "../Todo";
 
+import { AnimatePresence, Reorder } from "framer-motion";
+
+import data from "../../data.json";
+
 import "./index.scss";
 
 const CardTodoList = () => {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState(data);
 
   const newTodoList = (todo) => {
-    setTodoList([todo, ...todoList]);
+    let id = 1;
+    if (todoList.length > 0) {
+      id = todoList.length + 1;
+    }
+    let newTodo = { id: id, task: todo };
+    setTodoList([newTodo, ...todoList]);
   };
 
   const updateTodoList = (id, todo) => {
     const todoListUpdate = todoList.map((todoElement, index) => {
-      if (index === id) {
-        todoElement = todo;
+      if (todoElement.id === id) {
+        todoElement = { id: todoElement.id, task: todo };
       }
       return todoElement;
     });
@@ -24,21 +33,27 @@ const CardTodoList = () => {
   };
 
   const deleteTodoList = (id) => {
-    const todoListFilter = todoList.filter((todo, index) => index !== id);
-    setTodoList(todoListFilter);
+    setTodoList([...todoList].filter((todo) => todo.id !== id));
   };
+
+  console.log(todoList.length);
   return (
     <div className="container-card">
       <TodoForm newTodoList={newTodoList} />
-      {todoList.map((todo, index) => (
-        <Todo
-          key={index}
-          id={index}
-          todo={todo}
-          edit={updateTodoList}
-          deleteTodoList={deleteTodoList}
-        />
-      ))}
+      <Reorder.Group axis="y" values={todoList} onReorder={setTodoList}>
+        {/* <AnimatePresence> */}
+        {todoList.map((todo) => (
+          <Reorder.Item key={todo.id} value={todo}>
+            <Todo
+              id={todo.id}
+              task={todo.task}
+              edit={updateTodoList}
+              deleteTodoList={deleteTodoList}
+            />
+          </Reorder.Item>
+        ))}
+        {/* </AnimatePresence> */}
+      </Reorder.Group>
     </div>
   );
 };

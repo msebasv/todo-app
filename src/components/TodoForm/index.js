@@ -13,6 +13,7 @@ const TodoForm = (props) => {
   const addTodo = (event) => {
     event.preventDefault();
     if (todo.trim() !== "") {
+      //trim elimina espacios
       props.newTodoList(todo);
       setTodo("");
       setValidation(true);
