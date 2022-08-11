@@ -1,0 +1,48 @@
+@import "../../styles/colors.scss";
+
+form {
+  display: flex;
+  // justify-content: space-between;
+  width: 100%;
+  position: relative;
+
+  input {
+    color: $white-color;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: $secundary-color;
+    border: none;
+    outline: none;
+
+    // @media (min-width: 390px) {
+    //   width: 255px;
+    // }
+
+    // @media (min-width: 410px) {
+    //   width: 275px;
+    // }
+
+    // @media (min-width: 430px) {
+    //   width: 310px;
+    // }
+  }
+
+  ::placeholder {
+    color: #e4e4e4;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    z-index: 2;
+    border-radius: 10px;
+    background-color: $fourth-color;
+    padding: 7px 21px;
+    transform: translateX(2px);
+    font-size: 20px;
+    border: none;
+    color: $white-color;
+  }
+}

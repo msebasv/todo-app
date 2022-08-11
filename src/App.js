@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import CardTodoList from "./components/CardTodoList";
+
+import Navbar from "./components/Navbar";
+
+import "./App.scss";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container-app">
+      <header>
+        <Navbar />
       </header>
+      <main>
+        <h2>Make your todo list</h2>
+        <CardTodoList />
+      </main>
+      <footer>
+        <p>Made todo list with ❤️</p>
+      </footer>
     </div>
   );
-}
+};
 
 export default App;
