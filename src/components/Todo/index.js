@@ -62,7 +62,11 @@ const Todo = (props) => {
         </div>
       ) : (
         <form className="form-todo" onSubmit={handleSaveTodoEdit}>
-          <input value={editTextTodo} onChange={handleChangeEdit} />
+          <input
+            className="input-todo-edit"
+            value={editTextTodo}
+            onChange={handleChangeEdit}
+          />
           <button>
             <AiFillSave />
           </button>

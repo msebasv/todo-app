@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import TodoForm from "../TodoForm";
 import Todo from "../Todo";
 
-import { AnimatePresence, Reorder } from "framer-motion";
+import { Reorder } from "framer-motion";
 
 import data from "../../data.json";
 
@@ -36,13 +36,12 @@ const CardTodoList = () => {
     setTodoList([...todoList].filter((todo) => todo.id !== id));
   };
 
-  console.log(todoList.length);
   return (
     <div className="container-card">
       <TodoForm newTodoList={newTodoList} />
       <Reorder.Group axis="y" values={todoList} onReorder={setTodoList}>
         {todoList.map((todo) => (
-          <Reorder.Item key={todo.id} value={todo}>
+          <Reorder.Item key={todo.id} value={todo} className="li-todo">
             <Todo
               id={todo.id}
               task={todo.task}
